@@ -4,7 +4,7 @@ import Layout from "./pages/Layout";
 import { Dashboard } from "./pages/Dashboard";
 import ResumeBuilder from './pages/ResumeBuilder';
 import Preview from "./pages/Preview";
-import Login from "./pages/Login";
+import Auth from "./pages/Auth";
 function App() {
   return (
     <>
@@ -15,7 +15,7 @@ function App() {
           <Route path= 'builder/:resumeId' element={<ResumeBuilder/>}/>
         </Route>
         <Route path='view/:resumeId' element= {<Preview/>}/>
-        <Route path='/login' element= {<Login/>}/>
+        <Route path='/auth/*' element= {<Auth/>}/>
       </Routes>
     </>
   )
