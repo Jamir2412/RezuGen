@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {FilePenIcon, PencilIcon, Plus, TrashIcon, UploadCloud, UploadCloudIcon, XIcon} from 'lucide-react'
-import { dummyResumeData } from "./../assets/assets";
+import { dummyResumeData } from "./../assets/assets.js";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -23,13 +23,13 @@ export const Dashboard = () => {
   const createResume= async(e)=>{
     e.preventDefault();
     setShowCreateResume(false);
-    navigate(`/app/builder/resumeId`)
+    navigate(`/app/builder/${resume._id}`)
   }
 
   const uploadResume= async(e)=>{
     e.preventDefault();
     setShowUploadResume(false);
-    navigate(`/app/builder/resume._id`)
+    navigate(`/app/builder/${resume._id}`)
   }
   const editTitle= async(e)=>{
     e.preventDefault();

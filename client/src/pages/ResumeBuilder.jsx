@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {useParams, Link} from "react-router-dom"
+import {useParams, Link, data} from "react-router-dom"
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react'
 import { dummyResumeData } from '../assets/assets';
+import PersonalInfoForm from '../Components/PersonalInfoForm';
+import ResumePreview from '../Components/ResumePreview';
 
 
 const ResumeBuilder = () => {
@@ -29,7 +31,7 @@ const ResumeBuilder = () => {
   }
 
   const [activeSectionIndex, setActiveSectionIndex]= useState(0);
-  const [removeBackGround, setRemoveBackGround]= useState(false);
+  const [removeBackground, setRemoveBackground]= useState(false);
 
   const sections= [
     {id: "personal", name: "Personal Info", icon: User},
@@ -90,13 +92,28 @@ const ResumeBuilder = () => {
                 </div>
 
               </div>
+
+              {/* Form Content */}
+              <div className="space-y-6">
+                {activeSection.id==="personal" && (
+                  <PersonalInfoForm data ={resumeData.personal_info}
+                  onChange={(data)=> setResumeData(prev=>({...prev, personal_info:data}))}
+                  removeBackground={removeBackground}
+                  setRemoveBackground={setRemoveBackground}/>
+                )}
+
+              </div>
             </div>
 
           </div>
           {/* Right Panel- Review*/}
-          <div>
-
-
+          <div className="lg:col-span-7 max-lg:mt-6">
+              <div>
+                {/*buttons*/}
+              </div>
+                {/** resume preview */}
+                <ResumePreview data={resumeData} template= {resumeData.template}
+                accentColor={resumeData.accent_color}/>
           </div>
         </div>
 
