@@ -23,7 +23,7 @@ export const Dashboard = () => {
   const createResume= async(e)=>{
     e.preventDefault();
     setShowCreateResume(false);
-    navigate(`/app/builder/${resume._id}`)
+    navigate("/app/builder/resume123")
   }
 
   const uploadResume= async(e)=>{
