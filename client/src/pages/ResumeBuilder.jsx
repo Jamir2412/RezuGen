@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {useParams, Link, data} from "react-router-dom"
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react'
 import { dummyResumeData } from '../assets/assets';
-import PersonalInfoForm from '../Components/PersonalInfoForm';
+import ProfessionalSummarySection from '../Components/ProfessionalSummarySection';
 import ResumePreview from '../Components/ResumePreview';
+import { TemplateSelector } from '../Components/TemplateSelector';
+import ColorPicker from '../Components/ColorPicker';
+import PersonalInfoSection from '../Components/PersonalInfoSection';
+import ExperienceSection from '../Components/ExperienceSection';
 
 
 const ResumeBuilder = () => {
@@ -69,7 +73,12 @@ const ResumeBuilder = () => {
               {/* Section Navigation*/}
               <div className="flex justify-between items-center
               mb-6 border-b border-gray-300 py-1">
-                <div></div>
+                <div className='flex items-center gap-2'>
+                  <TemplateSelector selectedTemplate={resumeData.template}
+                  onChange={(template)=> setResumeData(prev=> ({...prev, template}))} />  
+                  <ColorPicker selectedColor={resumeData.accent_color} 
+                  onChange={(color)=>setResumeData(prev=>({...prev, accent_color: color}))}/>
+                </div>
                 <div className="flex items-center">
                   {
                     activeSectionIndex!==0 && (
@@ -96,12 +105,22 @@ const ResumeBuilder = () => {
               {/* Form Content */}
               <div className="space-y-6">
                 {activeSection.id==="personal" && (
-                  <PersonalInfoForm data ={resumeData.personal_info}
+                  <PersonalInfoSection data ={resumeData.personal_info}
                   onChange={(data)=> setResumeData(prev=>({...prev, personal_info:data}))}
                   removeBackground={removeBackground}
                   setRemoveBackground={setRemoveBackground}/>
                 )}
-
+                {activeSection.id==="summary" &&(
+                  <ProfessionalSummarySection data={resumeData.professional_summary} 
+                  onChange={(data)=> setResumeData(prev=>({...prev, professional_summary:data}))}
+                  setResumeData={setResumeData}/>
+                )
+                }
+                {activeSection.id==="experience" &&(
+                  <ExperienceSection data={resumeData.experience} 
+                  onChange={(data)=> setResumeData(prev=>({...prev, experience:data}))}/>
+                )
+                }
               </div>
             </div>
 

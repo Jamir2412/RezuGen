@@ -2,7 +2,7 @@ import { BriefcaseBusiness, Linkedin, Mail, MapPin, Phone, User } from 'lucide-r
 import React from 'react'
 import { Globe } from "lucide-react";
 
-const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground}) => {
+const PersonalInfoSection = ({data, onChange, removeBackground, setRemoveBackground}) => {
   
   const handleChange= (field, value)=>{
     onChange({...data, [field]: value});
@@ -74,4 +74,4 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
   )
 }
 
-export default PersonalInfoForm
+export default PersonalInfoSection
